@@ -1,0 +1,3 @@
+D:/PROJECTS/Quantis/build/_deps/googletest-subbuild/CMakeFiles/googletest-populate.dir
+D:/PROJECTS/Quantis/build/_deps/googletest-subbuild/CMakeFiles/edit_cache.dir
+D:/PROJECTS/Quantis/build/_deps/googletest-subbuild/CMakeFiles/rebuild_cache.dir

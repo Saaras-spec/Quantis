@@ -1,0 +1,5 @@
+if(EXISTS "D:/PROJECTS/Quantis/build/quantis_tests[1]_tests.cmake")
+  include("D:/PROJECTS/Quantis/build/quantis_tests[1]_tests.cmake")
+else()
+  add_test(quantis_tests_NOT_BUILT quantis_tests_NOT_BUILT)
+endif()

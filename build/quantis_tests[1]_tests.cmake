@@ -1,0 +1,5 @@
+add_test([=[QuantisSmokeTest.BasicAssertion]=]  D:/PROJECTS/Quantis/build/quantis_tests.exe [==[--gtest_filter=QuantisSmokeTest.BasicAssertion]==] --gtest_also_run_disabled_tests)
+set_tests_properties([=[QuantisSmokeTest.BasicAssertion]=]  PROPERTIES WORKING_DIRECTORY D:/PROJECTS/Quantis/build SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
+add_test([=[QuantisSmokeTest.ApplicationStarts]=]  D:/PROJECTS/Quantis/build/quantis_tests.exe [==[--gtest_filter=QuantisSmokeTest.ApplicationStarts]==] --gtest_also_run_disabled_tests)
+set_tests_properties([=[QuantisSmokeTest.ApplicationStarts]=]  PROPERTIES WORKING_DIRECTORY D:/PROJECTS/Quantis/build SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
+set(  quantis_tests_TESTS QuantisSmokeTest.BasicAssertion QuantisSmokeTest.ApplicationStarts)
