@@ -18,6 +18,10 @@ endif()
 # Main application
 add_executable(quantis src/main.cpp)
 
+add_library(quantis_core STATIC src/core/reference_aggregator.cpp)
+target_include_directories(quantis_core PUBLIC src)
+target_link_libraries(quantis PRIVATE quantis_core)
+
 # GoogleTest dependency
 include(FetchContent)
 
@@ -34,11 +38,15 @@ FetchContent_MakeAvailable(googletest)
 # Testing configuration
 enable_testing()
 
-add_executable(quantis_tests tests/smoke_test.cpp)
+add_executable(quantis_tests
+    tests/smoke_test.cpp
+    tests/reference_aggregator_test.cpp
+)
 
 target_link_libraries(
     quantis_tests
     PRIVATE
+    quantis_core
     GTest::gtest_main
 )
 
