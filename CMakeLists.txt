@@ -21,6 +21,7 @@ add_executable(quantis src/main.cpp)
 add_library(quantis_core STATIC
     src/core/reference_aggregator.cpp
     src/core/incremental_aggregator.cpp
+    src/sketch/log_histogram.cpp
 )
 target_include_directories(quantis_core PUBLIC src)
 target_link_libraries(quantis PRIVATE quantis_core)
@@ -45,6 +46,7 @@ add_executable(quantis_tests
     tests/smoke_test.cpp
     tests/reference_aggregator_test.cpp
     tests/incremental_aggregator_test.cpp
+    tests/log_histogram_test.cpp
 )
 
 target_link_libraries(
