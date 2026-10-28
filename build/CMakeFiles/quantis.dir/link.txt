@@ -1,3 +1,0 @@
-C:\Users\saara\Downloads\mingw64\bin\cmake.exe -E rm -f CMakeFiles\quantis.dir/objects.a
-C:\Users\saara\Downloads\mingw64\bin\ar.exe qc CMakeFiles\quantis.dir/objects.a @CMakeFiles\quantis.dir\objects1.rsp
-C:\Users\saara\Downloads\mingw64\bin\c++.exe -O3 -DNDEBUG -Wl,--whole-archive CMakeFiles\quantis.dir/objects.a -Wl,--no-whole-archive -o quantis.exe -Wl,--out-implib,libquantis.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\quantis.dir\linkLibs.rsp

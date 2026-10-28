@@ -1,3 +1,0 @@
-QuantisSmokeTest.BasicAssertion 5 0.00237646
-QuantisSmokeTest.ApplicationStarts 5 0.00219628
----
