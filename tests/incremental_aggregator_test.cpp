@@ -82,3 +82,26 @@ TEST(IncrementalAggregator, NegativeTimestampsLandInTheRightWindow) {
     EXPECT_EQ(inc.query("a", -1000, 0).count, 1u);
     EXPECT_EQ(inc.query("a", 0, 1000).count, 0u);
 }
+
+TEST(IncrementalAggregator, PercentilesWithinOnePercentOfReference) {
+    constexpr std::int64_t kWindow = 60'000;
+    ReferenceAggregator ref;
+    IncrementalAggregator inc(kWindow);
+
+    std::mt19937_64 rng(99);
+    std::uniform_int_distribution<std::int64_t> ts_dist(0, kWindow * 5 - 1);
+    std::lognormal_distribution<double> lat_dist(4.0, 1.0);
+
+    for (int i = 0; i < 100'000; ++i) {
+        Event e{"api", ts_dist(rng), static_cast<std::uint64_t>(i),
+                static_cast<std::uint32_t>(lat_dist(rng)), 200};
+        ref.add(e);
+        inc.add(e);
+    }
+
+    auto r = ref.query("api", 0, kWindow * 5);
+    auto n = inc.query("api", 0, kWindow * 5);
+    EXPECT_NEAR(n.p50_ms, r.p50_ms, r.p50_ms * 0.0101);
+    EXPECT_NEAR(n.p95_ms, r.p95_ms, r.p95_ms * 0.0101);
+    EXPECT_NEAR(n.p99_ms, r.p99_ms, r.p99_ms * 0.0101);
+}

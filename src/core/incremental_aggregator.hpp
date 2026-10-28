@@ -6,7 +6,8 @@
 #include <unordered_map>
 
 #include "core/event.hpp"
-#include "core/reference_aggregator.hpp"
+#include "core/reference_aggregator.hpp"  // reuses WindowStats
+#include "sketch/log_histogram.hpp"
 
 namespace quantis {
 
@@ -19,7 +20,7 @@ public:
 
     // Returns stats for all windows whose start time is in [start_ms, end_ms).
     // start_ms and end_ms should be multiples of window_ms.
-    // For now, p50/p95/p99 stay 0 (percentile sketches come in Step 2).
+    // Percentiles are approximate, within 1% relative error.
     WindowStats query(const std::string& service,
                       std::int64_t start_ms,
                       std::int64_t end_ms) const;
@@ -29,6 +30,7 @@ private:
         std::uint64_t count = 0;
         std::uint64_t errors = 0;
         std::uint64_t latency_sum = 0;
+        LogHistogram latency_hist;
     };
 
     std::int64_t window_start(std::int64_t ts) const;
